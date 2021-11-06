@@ -4,9 +4,11 @@ class ProfileCircle extends StatelessWidget {
   const ProfileCircle({
     Key? key,
     required this.radius,
+    required this.alpha,
   }) : super(key: key);
 
   final double radius;
+  final double alpha;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class ProfileCircle extends StatelessWidget {
       borderRadius: BorderRadius.circular(radius),
       child: Image.asset(
         'assets/images/me_and_gary.jpeg',
-        width: radius * 2,
-        height: radius * 2,
+        width: radius * alpha,
+        height: radius * alpha,
         fit: BoxFit.fill,
       ),
     );

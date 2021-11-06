@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:workout/controller/workoutController/workout_controller.dart';
 import 'package:workout/view/Screens/profile/profile_screen.dart';
+import 'package:workout/view/Styles/Colors/colors.dart';
+import 'package:workout/view/Styles/text_styles.dart';
 import 'package:workout/view/widgets/nav_bar.dart';
 import 'package:workout/view/widgets/profile_name_row.dart';
 import 'package:workout/view/widgets/workout_card.dart';
@@ -14,7 +17,7 @@ class WorkoutScreen extends StatefulWidget {
 
 class _WorkoutScreen extends State<WorkoutScreen> {
   final List<Widget> _screens = [
-    const WorkoutHelperScreen(), 
+    const WorkoutHelperScreen(),
     const ProfileScreen(),
   ];
 
@@ -24,11 +27,11 @@ class _WorkoutScreen extends State<WorkoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: dark_theme,
         elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: dark_theme,
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -41,6 +44,9 @@ class _WorkoutScreen extends State<WorkoutScreen> {
             label: '',
           ),
         ],
+        backgroundColor: dark_theme,
+        selectedItemColor: textColorFire,
+        unselectedItemColor: textColorDark,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _selectedIndex,
@@ -56,8 +62,22 @@ class _WorkoutScreen extends State<WorkoutScreen> {
   }
 }
 
-class WorkoutHelperScreen extends StatelessWidget {
+class WorkoutHelperScreen extends StatefulWidget {
   const WorkoutHelperScreen({Key? key}) : super(key: key);
+
+  @override
+  _WorkoutHelperScreen createState() => _WorkoutHelperScreen();
+}
+
+class _WorkoutHelperScreen extends State<WorkoutHelperScreen> {
+  late Future<List<WorkoutCard>> workouts;
+
+  final WorkoutController _controller = new WorkoutController();
+  @override
+  void initState() {
+    super.initState();
+    workouts = _controller.fetchWorkoutCards();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +89,27 @@ class WorkoutHelperScreen extends StatelessWidget {
           Expanded(
             child: SizedBox(
               height: 200.0,
-              child: ListView.builder(
-                itemCount: workouts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return workouts[index];
-                },
-              ),
+              child: FutureBuilder<List<WorkoutCard>>(
+                  future: workouts,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<WorkoutCard> list = snapshot.data ?? [];
+                      return ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          WorkoutCard card = list[index];
+                          return card;
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return const WorkoutCard(
+                        days: 'error',
+                        name: 'error',
+                        type: 'error',
+                      );
+                    }
+                    return const CircularProgressIndicator();
+                  }),
             ),
           ),
         ],

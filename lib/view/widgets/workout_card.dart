@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:workout/controller/workoutController/workout_controller.dart';
 import 'package:workout/view/Styles/text_styles.dart';
 
-List<WorkoutCard> workouts = [
+List<WorkoutCard> workoutslist = [
   const WorkoutCard(name: 'Back', type: 'Strength', days: 'Mon/Wed/Fri'),
   const WorkoutCard(name: 'Chest', type: 'Strength', days: 'Tues/Thurs'),
   const WorkoutCard(name: 'Legs', type: 'Strength', days: 'Tues/Thurs'),
@@ -24,13 +23,12 @@ class WorkoutCard extends StatelessWidget {
   final String name;
   final String type;
   final String days;
-  WorkoutConroller _cont = new WorkoutController();
 
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.blue,
+      color: cardColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -45,6 +43,8 @@ class WorkoutCard extends StatelessWidget {
         ],
       ),
       margin: const EdgeInsets.all(10),
+      borderOnForeground: true,
+
     );
   }
 }

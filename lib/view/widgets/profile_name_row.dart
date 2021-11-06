@@ -18,7 +18,7 @@ class ProfileNameCircle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Hello\n' + name + '.', style: title1),
-            const ProfileCircle(radius: 40),
+            const ProfileCircle(radius: 10, alpha: 6,),
           ],
         ));
   }
