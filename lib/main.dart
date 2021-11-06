@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout/view/Screens/Workout/workout_screen.dart';
+import 'package:workout/view/Screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/': (context) => const WorkoutScreen(),
+        '/profile': (context) => const ProfileScreen(),
+      }
     );
   }
 }

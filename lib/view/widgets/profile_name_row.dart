@@ -12,15 +12,14 @@ class ProfileNameCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          'Hello\n' + name + '.',
-          style: title1
-        ),
-        const ProfileCircle(radius: 30),
-      ],
-    );
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Hello\n' + name + '.', style: title1),
+            const ProfileCircle(radius: 40),
+          ],
+        ));
   }
 }
