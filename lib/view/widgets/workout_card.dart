@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workout/controller/workoutController/workout_controller.dart';
 import 'package:workout/view/Styles/text_styles.dart';
 
 List<WorkoutCard> workouts = [
@@ -23,6 +24,7 @@ class WorkoutCard extends StatelessWidget {
   final String name;
   final String type;
   final String days;
+  WorkoutConroller _cont = new WorkoutController();
 
   @override
   Widget build(BuildContext context) {
