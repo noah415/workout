@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:workout/view/widgets/profile_circle.dart';
+import 'package:workout/view/widgets/profile_name_row.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -71,10 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: const Color.fromRGBO(10, 10, 20, 1.0),
+        elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
+      backgroundColor: const Color.fromRGBO(10, 10, 20, 1.0),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -94,14 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: const <Widget>[
+            ProfileNameCircle(name: 'Noah'),
           ],
         ),
       ),
