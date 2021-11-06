@@ -12,6 +12,11 @@ app.get('/', (req, res) => {
 
 var workouts = [
       { 
+         'name': 'Brian',
+         'type': 'Strength',
+         'days': 'Mon/Wed/Fri',
+      },
+      { 
          'name': 'Back',
          'type': 'Strength',
          'days': 'Mon/Wed/Fri',
@@ -27,7 +32,7 @@ var workouts = [
          'days': 'Mon/Wed/Fri',
       },
       { 
-         'name': 'Bicepts',
+         'name': 'Biceps',
          'type': 'Strength',
          'days': 'Mon/Wed/Fri',
       },

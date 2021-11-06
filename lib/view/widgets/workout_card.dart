@@ -35,16 +35,15 @@ class WorkoutCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(padding: const EdgeInsets.all(5),child: Text(name, style: whiteTitle)),
-              Padding(padding: const EdgeInsets.all(5),child: Text(days, style: whiteBody)),
+              Padding(padding: const EdgeInsets.all(10),child: Text(name, style: whiteTitle)),
+              Padding(padding: const EdgeInsets.all(10),child: Text(days, style: whiteBody)),
             ],
           ),
-          Padding(padding: const EdgeInsets.all(5), child: Text(type, style: whiteBody)),
+          Padding(padding: const EdgeInsets.all(10), child: Text(type, style: whiteBody)),
         ],
       ),
       margin: const EdgeInsets.all(10),
       borderOnForeground: true,
-
     );
   }
 }

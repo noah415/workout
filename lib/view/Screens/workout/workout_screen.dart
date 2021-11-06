@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:workout/controller/workoutController/workout_controller.dart';
 import 'package:workout/view/Screens/profile/profile_screen.dart';
 import 'package:workout/view/Styles/Colors/colors.dart';
 import 'package:workout/view/Styles/text_styles.dart';
-import 'package:workout/view/widgets/nav_bar.dart';
 import 'package:workout/view/widgets/profile_name_row.dart';
 import 'package:workout/view/widgets/workout_card.dart';
 
@@ -26,11 +24,6 @@ class _WorkoutScreen extends State<WorkoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: dark_theme,
-        elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-      ),
       backgroundColor: dark_theme,
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -83,12 +76,15 @@ class _WorkoutHelperScreen extends State<WorkoutHelperScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          const ProfileNameCircle(name: 'Noah'),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(5, 80, 5, 0),
+            child: ProfileNameCircle(name: 'Noah'),
+          ),
           Expanded(
             child: SizedBox(
-              height: 200.0,
+              height: 20.0,
               child: FutureBuilder<List<WorkoutCard>>(
                   future: workouts,
                   builder: (context, snapshot) {
@@ -97,16 +93,17 @@ class _WorkoutHelperScreen extends State<WorkoutHelperScreen> {
                       return ListView.builder(
                         itemCount: list.length,
                         itemBuilder: (context, index) {
-                          WorkoutCard card = list[index];
-                          return card;
+                          return list[index];
                         },
                       );
                     } else if (snapshot.hasError) {
-                      return const WorkoutCard(
-                        days: 'error',
-                        name: 'error',
-                        type: 'error',
-                      );
+                      return const Padding(
+                          padding: EdgeInsets.fromLTRB(20, 200, 20, 0),
+                          child: Text("Sorry, our server is having problems...",
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: textColorFire,
+                              )));
                     }
                     return const CircularProgressIndicator();
                   }),

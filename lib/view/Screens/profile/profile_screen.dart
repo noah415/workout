@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:workout/view/Styles/Colors/colors.dart';
 import 'package:workout/view/Styles/text_styles.dart';
+import 'package:workout/view/widgets/profile_card.dart';
 import 'package:workout/view/widgets/profile_circle.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -15,35 +16,17 @@ class _ProfileScreen extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: dark_theme,
-        elevation: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-      ),
       backgroundColor: dark_theme,
-      body: Center(
-        child: Column(
-          children: const <Widget>[
-            ProfileCircle(
-              radius: 60,
-              alpha: 2,
-            ),
-            Text(
-              'Noah Otsuka',
-              style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-            Text(
-              'Bio',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            Text(
-                'A filler word is an apparently meaningless word, phrase, or sound that marks a pause ',
-                style: TextStyle(color: Colors.white)),
-          ],
-        ),
+      body: Column(
+        children: const <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 80, 10, 10),
+            child: ProfileCard(
+                FName: 'Noah',
+                LName: 'Otsuka',
+                bio: 'Hi my name is Noah and I am a full stack devolper...'),
+          ),
+        ],
       ),
     );
   }

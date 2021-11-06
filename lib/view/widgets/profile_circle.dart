@@ -18,7 +18,7 @@ class ProfileCircle extends StatelessWidget {
         'assets/images/me_and_gary.jpeg',
         width: radius * alpha,
         height: radius * alpha,
-        fit: BoxFit.fill,
+        fit: BoxFit.scaleDown,
       ),
     );
   }

@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:workout/view/Styles/text_styles.dart';
-import 'package:workout/view/widgets/profile_circle.dart';
 
-class ProfileCard extends StatefulWidget {
-  const ProfileCard(
-      {Key? key, required this.FName, required this.LName, required this.bio})
+
+import 'package:flutter/material.dart';
+
+class GoalsCard extends StatefulWidget {
+  const GoalsCard(
+      {Key? key,})
       : super(key: key);
 
   final String FName;
